@@ -7,7 +7,8 @@ import java.util.Set;
 /**
  * Created by pmagnucz on 2017. 05. 03..
  */
-
+@Entity
+@Table(name = "book")
 public class Book {
     private Long id;
     private Author author;
@@ -16,7 +17,8 @@ public class Book {
     private boolean available;
     private User user;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

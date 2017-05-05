@@ -2,6 +2,7 @@ package uni.miskolc.iit.service.impl.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import uni.miskolc.iit.dao.BookManagementDao;
 import uni.miskolc.iit.service.AuthorizationService;
 import uni.miskolc.iit.service.impl.AuthorizationServiceImpl;
 

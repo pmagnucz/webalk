@@ -34,6 +34,12 @@
         </dependency>
 
         <dependency>
+            <groupId>uni.miskolc.iit</groupId>
+            <artifactId>library-persist-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>1.5.2.RELEASE</version>

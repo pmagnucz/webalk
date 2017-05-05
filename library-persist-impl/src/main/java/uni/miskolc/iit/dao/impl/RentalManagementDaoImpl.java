@@ -18,7 +18,6 @@ import java.util.List;
 public class RentalManagementDaoImpl implements RentalManagementDao {
     private RentalRepository rentalRepository;
     private BookRepository bookRepository;
-    private UserRepository userRepository;
 
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
@@ -30,33 +29,25 @@ public class RentalManagementDaoImpl implements RentalManagementDao {
         this.rentalRepository = rentalRepository;
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @Override
     public List<LendBookRequest> listLendBookRequests() {
         return rentalRepository.findAll();
     }
 
     @Override
-    public LendBookResponse lendBook(Long userId, Long bookId) {
-        Book book = bookRepository.findOne(bookId);
-        User user = userRepository.findOne(userId);
+    public LendBookResponse lendBook(LendBookRequest lendBookRequest) {
+        Book book = bookRepository.findOne(lendBookRequest.getBook().getId());//.getAuthor().getName(), lendBookRequest.getBook().getTitle(), lendBookRequest.getBook().getReleaseDate());
+        User user = lendBookRequest.getUser();
 
         LendBookResponse lendBookResponse = new LendBookResponse();
         lendBookResponse.setBook(book);
-        lendBookResponse.setUserId(userId);
+        lendBookResponse.setUserId(user.getId());
 
-        if (book.isAvailable()){
+        if (book.isAvailable()) {
             book.setAvailable(false);
             book.setUser(user);
             lendBookResponse.setSuccess(true);
 
-            LendBookRequest lendBookRequest = new LendBookRequest();
-            lendBookRequest.setUser(user);
-            lendBookRequest.setBook(book);
             rentalRepository.save(lendBookRequest);
         } else {
             lendBookResponse.setSuccess(false);

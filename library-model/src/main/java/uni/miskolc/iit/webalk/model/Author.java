@@ -1,15 +1,21 @@
 package uni.miskolc.iit.webalk.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
-
+@Entity
+@Table(name = "author")
 public class Author {
+    @Column(name = "author_id")
     private Long id;
     private String name;
+    private List<Book> books;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -26,4 +32,11 @@ public class Author {
         this.name = name;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }

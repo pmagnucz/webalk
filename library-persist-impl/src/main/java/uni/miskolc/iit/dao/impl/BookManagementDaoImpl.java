@@ -1,6 +1,7 @@
 package uni.miskolc.iit.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import uni.miskolc.iit.dao.BookManagementDao;
 import uni.miskolc.iit.dao.bean.FilterParameter;
 import uni.miskolc.iit.repository.AuthorRepository;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
+@Component
 public class BookManagementDaoImpl implements BookManagementDao {
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
@@ -63,7 +65,7 @@ public class BookManagementDaoImpl implements BookManagementDao {
     @Override
     public List<Book> getFilteredBookList(FilterParameter filterParameter) {
         List<Book> allBooks = bookRepository.findAll();
-        if (filterParameter != null){
+       if (filterParameter != null){
             // filter by author
             if (filterParameter.getAuthor() != null){
                 for (Book book : allBooks){

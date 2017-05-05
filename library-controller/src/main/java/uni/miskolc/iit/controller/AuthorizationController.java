@@ -24,4 +24,5 @@ public class AuthorizationController {
             LoginRequest loginRequest = new LoginRequest();
             return authorizationService.login(loginRequest);
         }
+
 }

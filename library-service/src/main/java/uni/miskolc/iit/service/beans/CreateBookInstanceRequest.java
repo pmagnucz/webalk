@@ -3,9 +3,9 @@ package uni.miskolc.iit.service.beans;
 import java.util.Date;
 
 /**
- * Created by pmagnucz on 2017. 05. 03..
+ * Created by pmagnucz on 2017. 05. 04..
  */
-public class GetBookRequest {
+public class CreateBookInstanceRequest {
     private String author;
     private String title;
     private Date releaseDate;
@@ -33,4 +33,5 @@ public class GetBookRequest {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
 }
