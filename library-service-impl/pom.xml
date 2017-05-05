@@ -5,13 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <artifactId>webalk</artifactId>
+        <groupId>uni.miskolc.iit</groupId>
+        <version>0.1.0</version>
     </parent>
 
-    <groupId>uni.miskolc.iit</groupId>
     <artifactId>library-service-impl</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
@@ -23,29 +21,21 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>uni.miskolc.iit</groupId>
             <artifactId>library-service</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>uni.miskolc.iit</groupId>
+            <artifactId>library-persist</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>1.5.2.RELEASE</version>
         </dependency>
 
     </dependencies>
