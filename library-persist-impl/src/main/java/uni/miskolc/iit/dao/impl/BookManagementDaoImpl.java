@@ -59,7 +59,7 @@ public class BookManagementDaoImpl implements BookManagementDao {
     @Override
     public Book getBookInstance(String author, String title, Date releaseDate) {
 
-        return bookRepository.findOne(author, title, releaseDate);
+        return null;//bookRepository.findOne(author, title, releaseDate);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package uni.miskolc.iit.webalk.model;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,6 +20,9 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<LendBookRequest> lendBookRequests;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

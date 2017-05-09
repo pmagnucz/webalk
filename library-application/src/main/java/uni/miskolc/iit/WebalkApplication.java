@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan
-public class WebalkApplicationMain {
+public class WebalkApplication {
     public static void main(String[] args) {
-        SpringApplication.run(WebalkApplicationMain.class, args);
+        SpringApplication.run(WebalkApplication.class, args);
     }
 }

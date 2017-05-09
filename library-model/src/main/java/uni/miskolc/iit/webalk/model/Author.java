@@ -10,12 +10,14 @@ import java.util.List;
 @Table(name = "author")
 public class Author {
     @Column(name = "author_id")
-    private Long id;
-    private String name;
-    private List<Book> books;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
+
     public Long getId() {
         return id;
     }

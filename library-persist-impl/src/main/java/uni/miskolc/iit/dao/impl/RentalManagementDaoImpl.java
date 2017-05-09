@@ -45,7 +45,7 @@ public class RentalManagementDaoImpl implements RentalManagementDao {
 
         if (book.isAvailable()) {
             book.setAvailable(false);
-            book.setUser(user);
+            book.setUser(user.getId());
             lendBookResponse.setSuccess(true);
 
             rentalRepository.save(lendBookRequest);

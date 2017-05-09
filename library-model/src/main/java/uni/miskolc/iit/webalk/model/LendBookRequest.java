@@ -11,22 +11,35 @@ public class LendBookRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private User userId;
-    private Book bookId;
 
-    public User getUser() {
-        return userId;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Book book;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user")
+    private User user;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUser(User userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Book getBook() {
-        return bookId;
+        return book;
     }
 
-    public void setBook(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

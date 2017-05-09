@@ -11,5 +11,4 @@ import java.util.Date;
  */
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Book findOne(String author, String title, Date releaseDate);
 }

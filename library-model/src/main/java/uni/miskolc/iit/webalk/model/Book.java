@@ -2,7 +2,6 @@ package uni.miskolc.iit.webalk.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by pmagnucz on 2017. 05. 03..
@@ -10,15 +9,22 @@ import java.util.Set;
 @Entity
 @Table(name = "book")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Author author;
     private Date releaseDate;
     private String title;
     private boolean available;
-    private User user;
+    private Long userId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authorId")
+    private Author author;
+
+    @OneToOne
+    @JoinColumn(name = "book")
+    private LendBookRequest lendBookRequest;
+
     public Long getId() {
         return id;
     }
@@ -51,12 +57,12 @@ public class Book {
         this.available = available;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Long user) {
+        this.userId = user;
     }
 
     public void setTitle(String title) {

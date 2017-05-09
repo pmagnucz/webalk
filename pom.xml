@@ -21,6 +21,7 @@
         <module>library-controller</module>
         <module>library-persist</module>
         <module>library-persist-impl</module>
+        <module>library-application</module>
     </modules>
 
 </project>
