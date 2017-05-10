@@ -4,5 +4,6 @@ library-service/target
 library-service-impl/target
 library-persist/target
 library-persist-impl/target
+library-application/target
 .idea
 *.iml

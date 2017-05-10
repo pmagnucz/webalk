@@ -1,5 +1,9 @@
 package uni.miskolc.iit.webalk.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,6 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "book")
+@Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

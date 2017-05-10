@@ -1,8 +1,13 @@
 package uni.miskolc.iit.webalk.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
+
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
+@Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LendBookResponse {
     private boolean success;
     private Long userId;

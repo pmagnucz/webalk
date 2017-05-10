@@ -1,5 +1,9 @@
 package uni.miskolc.iit.webalk.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "lend_requests")
+@Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LendBookRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
