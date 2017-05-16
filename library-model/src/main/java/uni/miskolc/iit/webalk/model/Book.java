@@ -10,25 +10,14 @@ import java.util.Date;
 /**
  * Created by pmagnucz on 2017. 05. 03..
  */
-@Entity
-@Table(name = "book")
+
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date releaseDate;
-    private String title;
-    private boolean available;
-    private Long userId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authorId")
     private Author author;
-
-    @OneToOne
-    @JoinColumn(name = "book")
-    private LendBookRequest lendBookRequest;
+    private String title;
+    private Date releaseDate;
+    private boolean available;
 
     public Long getId() {
         return id;
@@ -60,14 +49,6 @@ public class Book {
 
     public void setAvailable(boolean available) {
         this.available = available;
-    }
-
-    public Long getUser() {
-        return userId;
-    }
-
-    public void setUser(Long user) {
-        this.userId = user;
     }
 
     public void setTitle(String title) {

@@ -1,5 +1,6 @@
 package uni.miskolc.iit;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -8,13 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
-import static org.hibernate.criterion.Restrictions.and;
-
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
 @SpringBootApplication
 @ComponentScan
+@MapperScan("uni.miskolc.iit.mapper")
 public class WebalkApplication extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

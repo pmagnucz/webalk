@@ -30,22 +30,22 @@ public class BookManagementController {
     }
 
     @GetMapping("/books")
-    public ResponseEntity<List<Book>> listBooks(){
-        return ResponseEntity.ok(bookManagementService.getFilteredBookList(new GetFilteredBookListRequest()));
+    public ResponseEntity<List<Book>> listBooks() {
+        return ResponseEntity.ok(bookManagementService.getBookList());
     }
 
     @PostMapping("/book")
-    public ResponseEntity<Book> getBookInstance(@RequestBody GetBookRequest getBookRequest){
+    public ResponseEntity<Book> getBookInstance(@RequestBody GetBookRequest getBookRequest) {
         return ResponseEntity.ok(bookManagementService.getBookInstance(getBookRequest));
     }
 
     @PostMapping("/manage/book")
-    public ResponseEntity<Book> addBookInstance(@RequestBody CreateBookInstanceRequest createBookInstanceRequest){
+    public ResponseEntity<Book> addBookInstance(@RequestBody CreateBookInstanceRequest createBookInstanceRequest) {
         return ResponseEntity.ok(bookManagementService.addBook(createBookInstanceRequest));
     }
 
     @PostMapping("/manage/addAuthor")
-    public ResponseEntity<Author> addAuthor(@RequestBody AddAuthorRequest addAuthorRequest){
-        return ResponseEntity.ok(bookManagementService.addAuthor(addAuthorRequest.getName()));
+    public ResponseEntity<Author> addAuthor(@RequestBody AddAuthorRequest addAuthorRequest) {
+        return ResponseEntity.ok(bookManagementService.addAuthor(addAuthorRequest));
     }
 }

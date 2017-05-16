@@ -1,5 +1,6 @@
 package uni.miskolc.iit.service;
 
+import uni.miskolc.iit.service.beans.AddAuthorRequest;
 import uni.miskolc.iit.service.beans.CreateBookInstanceRequest;
 import uni.miskolc.iit.service.beans.GetBookRequest;
 import uni.miskolc.iit.service.beans.GetFilteredBookListRequest;
@@ -13,11 +14,13 @@ import java.util.List;
  */
 public interface BookManagementService {
 
-    Author addAuthor(String name);
+    Author addAuthor(AddAuthorRequest addAuthorRequest);
 
     Book addBook(CreateBookInstanceRequest createBookInstanceRequest);
 
     Book getBookInstance(GetBookRequest getBookRequest);
+
+    List<Book> getBookList();
 
     List<Book> getFilteredBookList(GetFilteredBookListRequest getFilteredBookListRequest);
 }

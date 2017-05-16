@@ -2,28 +2,24 @@ package uni.miskolc.iit.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import uni.miskolc.iit.dao.UserManagementDao;
-import uni.miskolc.iit.repository.UserRepository;
+import uni.miskolc.iit.mapper.UserMapper;
 import uni.miskolc.iit.webalk.model.User;
 
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
 public class UserManagementDaoImpl implements UserManagementDao {
-    private UserRepository userRepository;
-
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserMapper userMapper;
 
     @Override
     public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userMapper.findByUsername(username);
     }
 
     @Override
     public User changeUserDetails(Long id, String username, String password, String firstName, String lastName, String email) {
-        User user = userRepository.findOne(id);
+        User user = userMapper.findById(id);
         if (username != null && username.length() != 0){
             user.setUsername(username);
         }
@@ -40,7 +36,9 @@ public class UserManagementDaoImpl implements UserManagementDao {
             user.setPassword(password);
         }
 
-        return userRepository.save(user);
+        userMapper.update(user);
+
+        return user;
     }
 
 }

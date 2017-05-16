@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uni.miskolc.iit.dao.BookManagementDao;
 import uni.miskolc.iit.dao.bean.FilterParameter;
 import uni.miskolc.iit.service.BookManagementService;
+import uni.miskolc.iit.service.beans.AddAuthorRequest;
 import uni.miskolc.iit.service.beans.CreateBookInstanceRequest;
 import uni.miskolc.iit.service.beans.GetBookRequest;
 import uni.miskolc.iit.service.beans.GetFilteredBookListRequest;
@@ -27,8 +28,8 @@ public class BookManagementServiceImpl implements BookManagementService {
     }
 
     @Override
-    public Author addAuthor(String name) {
-        return bookManagementDao.addAuthor(name);
+    public Author addAuthor(AddAuthorRequest addAuthorRequest) {
+        return bookManagementDao.addAuthor(addAuthorRequest.getName());
     }
 
     @Override
@@ -39,6 +40,11 @@ public class BookManagementServiceImpl implements BookManagementService {
     @Override
     public Book getBookInstance(GetBookRequest request) {
         return bookManagementDao.getBookInstance(request.getAuthor(), request.getTitle(), request.getReleaseDate());
+    }
+
+    @Override
+    public List<Book> getBookList() {
+        return bookManagementDao.getBookList();
     }
 
     @Override

@@ -1,0 +1,18 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="uni.miskolc.iit.mapper.RentalMapper">
+
+    <resultMap id="result" type="uni.miskolc.iit.webalk.model.LendBookRequest">
+        <result property="id" column="ID"/>
+        <result property="book.id" column="BOOK_ID"     />
+        <result property="user.id" column="USER_ID" />
+    </resultMap>
+
+    <select id="findAll" resultMap="result">
+        SELECT * FROM LEND_BOOK_REQUESTS;
+    </select>
+    
+    <insert id="create" parameterType="uni.miskolc.iit.webalk.model.LendBookRequest">
+        INSERT INTO LEND_BOOK_REQESTS(BOOK_ID, USER_ID) VALUES (#{lendBookRequest.book.id}, #{lendBookRequest.user.id});
+    </insert>
+</mapper>

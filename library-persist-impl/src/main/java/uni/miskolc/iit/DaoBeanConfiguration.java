@@ -1,7 +1,12 @@
 package uni.miskolc.iit;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import uni.miskolc.iit.dao.BookManagementDao;
 import uni.miskolc.iit.dao.RentalManagementDao;
 import uni.miskolc.iit.dao.UserManagementDao;
@@ -23,4 +28,5 @@ public class DaoBeanConfiguration {
 
     @Bean
     public UserManagementDao userManagementDao(){return new UserManagementDaoImpl();}
+
 }

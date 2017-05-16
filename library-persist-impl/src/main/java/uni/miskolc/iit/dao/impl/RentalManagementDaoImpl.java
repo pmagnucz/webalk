@@ -2,13 +2,10 @@ package uni.miskolc.iit.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import uni.miskolc.iit.dao.RentalManagementDao;
-import uni.miskolc.iit.repository.BookRepository;
-import uni.miskolc.iit.repository.RentalRepository;
-import uni.miskolc.iit.repository.UserRepository;
-import uni.miskolc.iit.webalk.model.Book;
-import uni.miskolc.iit.webalk.model.LendBookRequest;
-import uni.miskolc.iit.webalk.model.LendBookResponse;
-import uni.miskolc.iit.webalk.model.User;
+import uni.miskolc.iit.mapper.AuthorMapper;
+import uni.miskolc.iit.mapper.BookMapper;
+import uni.miskolc.iit.mapper.RentalMapper;
+import uni.miskolc.iit.webalk.model.*;
 
 import java.util.List;
 
@@ -16,27 +13,25 @@ import java.util.List;
  * Created by pmagnucz on 2017. 05. 04..
  */
 public class RentalManagementDaoImpl implements RentalManagementDao {
-    private RentalRepository rentalRepository;
-    private BookRepository bookRepository;
+    @Autowired
+    private RentalMapper rentalMapper;
 
     @Autowired
-    public void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    private BookMapper bookMapper;
 
     @Autowired
-    public void setRentalRepository(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
-    }
+    private AuthorMapper authorMapper;
 
     @Override
     public List<LendBookRequest> listLendBookRequests() {
-        return rentalRepository.findAll();
+        return rentalMapper.findAll();
     }
 
     @Override
     public LendBookResponse lendBook(LendBookRequest lendBookRequest) {
-        Book book = bookRepository.findOne(lendBookRequest.getBook().getId());//.getAuthor().getName(), lendBookRequest.getBook().getTitle(), lendBookRequest.getBook().getReleaseDate());
+        Author author = authorMapper.findById(lendBookRequest.getBook().getAuthor().getId());
+        Book book = bookMapper.find(author.getName(), lendBookRequest.getBook().getTitle(),
+                lendBookRequest.getBook().getReleaseDate());
         User user = lendBookRequest.getUser();
 
         LendBookResponse lendBookResponse = new LendBookResponse();
@@ -45,10 +40,10 @@ public class RentalManagementDaoImpl implements RentalManagementDao {
 
         if (book.isAvailable()) {
             book.setAvailable(false);
-            book.setUser(user.getId());
             lendBookResponse.setSuccess(true);
 
-            rentalRepository.save(lendBookRequest);
+            bookMapper.update(book);
+            rentalMapper.create(lendBookRequest);
         } else {
             lendBookResponse.setSuccess(false);
         }

@@ -9,19 +9,10 @@ import javax.persistence.*;
 /**
  * Created by pmagnucz on 2017. 05. 04..
  */
-@Entity
-@Table(name = "lend_requests")
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LendBookRequest {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne(fetch = FetchType.LAZY)
     private Book book;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
     private User user;
 
     public Long getId() {

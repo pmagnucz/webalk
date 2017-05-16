@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uni.miskolc.iit.mapper.BookMapper">
+    <resultMap id="book" type="uni.miskolc.iit.webalk.model.Book">
+        <result property="id" column="ID"/>
+        <result property="author.id" column="AUTHOR_ID"/>
+        <result property="title" column="TITLE"/>
+        <result property="releaseDate" column="RELEASE_DATE"/>
+        <result property="available" column="AVAILABLE"/>
+    </resultMap>
+
+    <resultMap id="author" type="uni.miskolc.iit.webalk.model.Author">
+        <result property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+    </resultMap>
+
+    <insert id="create" parameterType="uni.miskolc.iit.webalk.model.Book">
+        INSERT INTO BOOK(AUTHOR, TITLE, RELEASE_DATE, AVAILABLE)
+        VALUES (#{author.id}, #{title}, #{releaseDate}, #{available});
+    </insert>
+
+    <select id="find" resultMap="book">
+        SELECT * FROM BOOK WHERE AUTHOR = #{author} OR TITLE = #{title} OR RELEASE_DATE = #{releaseDate};
+    </select>
+
+    <select id="findById" parameterType="Long" resultMap="book">
+        SELECT * FROM BOOK WHERE ID = #{id};
+    </select>
+
+    <select id="findByTitle" resultMap="book">
+        SELECT * FROM BOOK WHERE TITLE = #{title};
+    </select>
+
+    <select id="findAll" resultMap="book">
+        SELECT * FROM BOOK;
+    </select>
+
+    <update id="update">
+        UPDATE BOOK SET BOOK.AUTHOR  = #{author}, BOOK.TITLE = #{title},
+        BOOK.RELEASE_DATE = #{releaseDate}, BOOK.AVAILABLE = #{available} WHERE BOOK.ID = #{id};
+    </update>
+
+    <delete id="deleteById">
+        DELETE BOOK WHERE BOOK.ID = #{id};
+    </delete>
+</mapper>

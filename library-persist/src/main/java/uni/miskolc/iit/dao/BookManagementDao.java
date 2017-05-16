@@ -17,6 +17,8 @@ public interface BookManagementDao {
 
     Book getBookInstance(String author, String title, Date releaseDate);
 
+    List<Book> getBookList();
+
     List<Book> getFilteredBookList(FilterParameter filterParameter);
 
 }

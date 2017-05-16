@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="uni.miskolc.iit.mapper.UserMapper">
+
+    <select id="findById" parameterType="Long" resultType="uni.miskolc.iit.webalk.model.User">
+        SELECT * FROM USERS WHERE USERS.ID = #{id};
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="uni.miskolc.iit.webalk.model.User">
+        SELECT * FROM USERS WHERE USERS.USERNAME = #{username};
+    </select>
+
+    <update id="update">
+        UPDATE USERS SET USERS.USERNAME = #{username}, USERS.FIRST_NAME = #{firstName}, USERS.LAST_NAME = #{lastName},
+        USERS.EMAIL = #{email}, USERS.PASSWORD = #{password};
+    </update>
+</mapper>

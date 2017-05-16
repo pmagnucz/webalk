@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="uni.miskolc.iit.mapper.AuthorMapper">
+
+    <resultMap id="author" type="uni.miskolc.iit.webalk.model.Author">
+        <result property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+    </resultMap>
+
+    <select id="findByName" parameterType="String" resultMap="author">
+        SELECT * FROM AUTHOR WHERE AUTHOR.NAME = #{name};
+    </select>
+
+    <insert id="create" parameterType="String">
+        INSERT INTO AUTHOR (AUTHOR.NAME) VALUES (#{name});
+    </insert>
+</mapper>
